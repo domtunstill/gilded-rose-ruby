@@ -3,23 +3,19 @@
 require 'item'
 
 class GildedRose
+
+  SPECIAL_ITEMS = ['Aged Brie', 'Backstage passes to a TAFKAL80ETC concert', 'Sulfuras, Hand of Ragnaros']
+
   def initialize(items)
     @items = items
   end
 
   def update_quality
     @items.each do |item|
-      # takes away 1 from normal item qualities if above 0
-      if (item.name != 'Aged Brie') && (item.name != 'Backstage passes to a TAFKAL80ETC concert')
-        normal_item_quality(item) if item.name != 'Sulfuras, Hand of Ragnaros'
-      else
-        # adds 1 to special items if quality is less than 50
-        brie_quality(item) if item.name == 'Aged Brie'
-        backstage_pass_quality(item) if item.name == 'Backstage passes to a TAFKAL80ETC concert'
-      end
-
+      normal_item_quality(item) unless SPECIAL_ITEMS.include?(item.name)
+      brie_quality(item) if item.name == SPECIAL_ITEMS[0]
+      backstage_pass_quality(item) if item.name == SPECIAL_ITEMS[1]
       update_sell_in(item)
-
     end
   end
 
