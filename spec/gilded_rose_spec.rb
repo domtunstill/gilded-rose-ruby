@@ -196,6 +196,12 @@ describe GildedRose do
       subject.brie_quality(item)
       expect(item.quality).to eq 11
     end
+    it 'Brie: quality increases twice as fast after sellin date' do
+      item = Item.new(name = 'Aged Brie', sell_in = 0, quality = 10)
+      subject.brie_quality(item)
+      expect(item.quality).to eq 12
+    end
+
   end
 
 end
