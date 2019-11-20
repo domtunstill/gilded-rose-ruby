@@ -16,9 +16,7 @@ class GildedRose
         end
       else
         # adds 1 to special items if quality is less than 50
-        if item.quality < 50 && item.name == 'Aged Brie'
-          item.quality += 1
-        end
+        brie_quality(item) if item.name == 'Aged Brie'
         backstage_pass_quality(item) if item.name == 'Backstage passes to a TAFKAL80ETC concert'
       end
 
@@ -32,9 +30,6 @@ class GildedRose
               item.quality -= 1 if item.name != 'Sulfuras, Hand of Ragnaros'
             end
           end
-        else
-          # otherwise adds another 1 to the quality of the brie
-          item.quality += 1 if item.quality < 50
         end
       end
     end
