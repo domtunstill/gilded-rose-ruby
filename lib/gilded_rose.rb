@@ -29,9 +29,7 @@ class GildedRose
         end
       end
 
-      if item.name != 'Sulfuras, Hand of Ragnaros'
-        item.sell_in -= 1
-      end
+      update_sell_in(item)
 
       if item.sell_in < 0
         if item.name != 'Aged Brie'
@@ -52,7 +50,9 @@ class GildedRose
     end
   end
 
-  def update_sell_in
+  def update_sell_in(item)
+    return if item.name == 'Sulfuras, Hand of Ragnaros'
+    item.sell_in -= 1
   end
 
 
