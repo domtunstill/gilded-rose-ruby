@@ -9,21 +9,23 @@ class GildedRose
 
   def update_quality
     @items.each do |item|
+      # takes away 1 from normal item qualities if above 0
       if (item.name != 'Aged Brie') && (item.name != 'Backstage passes to a TAFKAL80ETC concert')
         if item.quality > 0
-          if item.name != 'Sulfuras, Hand of Ragnaros'
-            item.quality = item.quality - 1
-          end
+          item.quality -= 1 if item.name != 'Sulfuras, Hand of Ragnaros'
         end
       else
+        # adds 1 to special items if quality is less than 50
         if item.quality < 50
-          item.quality = item.quality + 1
+          item.quality += 1
           if item.name == 'Backstage passes to a TAFKAL80ETC concert'
+            # adds another 1 to concert ticket if quality is less than 50 and sell_in is less than 11
             if item.sell_in < 11
-              item.quality = item.quality + 1 if item.quality < 50
+              item.quality += 1 if item.quality < 50
             end
+            # adds another 1 to concert ticket if quality is less than 50 and sell_in is less than 6
             if item.sell_in < 6
-              item.quality = item.quality + 1 if item.quality < 50
+              item.quality += 1 if item.quality < 50
             end
           end
         end
@@ -31,30 +33,33 @@ class GildedRose
 
       update_sell_in(item)
 
+      # takes away another 1 from normal item qualities if above 0 and less than 0 for sell_in
       if item.sell_in < 0
         if item.name != 'Aged Brie'
           if item.name != 'Backstage passes to a TAFKAL80ETC concert'
             if item.quality > 0
-              if item.name != 'Sulfuras, Hand of Ragnaros'
-                item.quality = item.quality - 1
-              end
+              item.quality -= 1 if item.name != 'Sulfuras, Hand of Ragnaros'
             end
           else
-            item.quality = item.quality - item.quality
+            # sets quality to 0 for backstage pass if sell_in date is less than 0
+            item.quality = 0
           end
         else
-          item.quality = item.quality + 1 if item.quality < 50
+          # otherwise adds another 1 to the quality of the bree
+          item.quality += 1 if item.quality < 50
         end
       end
-
     end
   end
 
   def update_sell_in(item)
     return if item.name == 'Sulfuras, Hand of Ragnaros'
+
     item.sell_in -= 1
   end
 
-
+  def backstage_pass_quality(item)
+    item.quality = 11
+  end
+  
 end
-
