@@ -5,6 +5,18 @@ require 'gilded_rose'
 describe GildedRose do
   let(:subject) { described_class.new([]) }
 
+  describe 'array of SPECIAL_ITEMS in GildedRose class' do
+    it 'Sulfuras, Hand of Ragnaros has stored' do
+      expect(GildedRose::SPECIAL_ITEMS).to include('Sulfuras, Hand of Ragnaros')
+    end
+    it 'Sulfuras, Hand of Ragnaros has stored' do
+      expect(GildedRose::SPECIAL_ITEMS).to include('Backstage passes to a TAFKAL80ETC concert')
+    end
+    it 'Sulfuras, Hand of Ragnaros has stored' do
+      expect(GildedRose::SPECIAL_ITEMS).to include('Aged Brie')
+    end
+  end
+
   describe '#update_quality' do
     it 'does not change the name' do
       items = [Item.new(name = 'Elixir of the Mongoose', sell_in = 0, quality = 0)]
@@ -184,7 +196,7 @@ describe GildedRose do
       expect(item.quality).to eq 0
     end
   end
-    
+
   describe '#brie_quality' do
     it 'Brie: items quality never more than 50' do
       item = Item.new(name = 'Aged Brie', sell_in = 20, quality = 50)
@@ -201,7 +213,6 @@ describe GildedRose do
       subject.brie_quality(item)
       expect(item.quality).to eq 12
     end
-
   end
 
   describe '#normal_item_quality' do
@@ -222,5 +233,4 @@ describe GildedRose do
       expect(item.quality).to eq 8
     end
   end
-
 end
