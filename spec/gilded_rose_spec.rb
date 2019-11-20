@@ -12,7 +12,7 @@ describe GildedRose do
       expect(items[0].name).to eq 'Elixir of the Mongoose'
     end
 
-    it 'All items: quality of item is never negative' do
+    it 'All items: quality of item cannot go negative' do
       items = [Item.new(name = 'Elixir of the Mongoose', sell_in = 0, quality = 0)]
       GildedRose.new(items).update_quality
       expect(items[0].quality).to eq 0
@@ -205,7 +205,28 @@ describe GildedRose do
   end
 
   describe '#normal_item_quality' do
+    it 'All items: quality of item cannot go negative' do
+      item = Item.new(name = 'Elixir of the Mongoose', sell_in = 0, quality = 0)
+      subject.normal_item_quality(item)
+      expect(item.quality).to eq 0
+    end
+    it 'Normal: item decreases quality each day' do
+      item = Item.new(name = 'Elixir of the Mongoose', sell_in = 10, quality = 10)
+      subject.normal_item_quality(item)
+      expect(item.quality).to eq 9
+    end
 
+    # it 'Normal: item decreases sell_in each day' do
+    #   items = [Item.new(name = 'Elixir of the Mongoose', sell_in = 10, quality = 10)]
+    #   GildedRose.new(items).update_quality
+    #   expect(items[0].sell_in).to eq 9
+    # end
+
+    # it 'Normal: quality twice decreases as fast after sell_in' do
+    #   items = [Item.new(name = 'Elixir of the Mongoose', sell_in = 0, quality = 10)]
+    #   GildedRose.new(items).update_quality
+    #   expect(items[0].quality).to eq 8
+    # end
   end
 
 end

@@ -53,6 +53,10 @@ class GildedRose
     item.quality += 1 if item.sell_in <= 0 && !max_quality?(item)
   end
 
+  def normal_item_quality(item)
+    item.quality -= 1 if item.quality > 0
+  end
+
   private
 
   def max_quality?(item)
