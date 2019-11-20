@@ -16,10 +16,10 @@ class GildedRose
         end
       else
         # adds 1 to special items if quality is less than 50
-        if item.quality < 50
-          item.quality += 1 if item.name == 'Aged Brie'
-          backstage_pass_quality(item) if item.name == 'Backstage passes to a TAFKAL80ETC concert'
+        if item.quality < 50 && item.name == 'Aged Brie'
+          item.quality += 1
         end
+        backstage_pass_quality(item) if item.name == 'Backstage passes to a TAFKAL80ETC concert'
       end
 
       update_sell_in(item)
@@ -31,12 +31,9 @@ class GildedRose
             if item.quality > 0
               item.quality -= 1 if item.name != 'Sulfuras, Hand of Ragnaros'
             end
-          else
-            # sets quality to 0 for backstage pass if sell_in date is less than 0
-            item.quality = 0
           end
         else
-          # otherwise adds another 1 to the quality of the bree
+          # otherwise adds another 1 to the quality of the brie
           item.quality += 1 if item.quality < 50
         end
       end
@@ -50,9 +47,14 @@ class GildedRose
   end
 
   def backstage_pass_quality(item)
-    item.quality += 1 if item.sell_in < 6
-    item.quality += 1 if item.sell_in < 11
-    item.quality += 1
+    return item.quality = 0 if item.sell_in <= 0
+    item.quality += 1 if item.sell_in < 6 && item.quality < 50
+    item.quality += 1 if item.sell_in < 11 && item.quality < 50
+    item.quality += 1 if item.quality < 50
+  end
+
+  def brie_quality(item)
+    item.quality += 1 if item.quality < 50
   end
   
 end
