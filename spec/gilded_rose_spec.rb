@@ -122,6 +122,23 @@ describe GildedRose do
       GildedRose.new(items).update_quality
       expect(items[0].sell_in).to eq 9
     end
+
+    it 'Conjured: quality of item cannot go negative' do
+      items = [Item.new(name = 'Conjured Mana Cake', sell_in = 0, quality = 0)]
+      GildedRose.new(items).update_quality
+      expect(items[0].quality).to eq 0
+    end
+    it 'Conjured: item decreases quality by 2 each day' do
+      items = [Item.new(name = 'Conjured Mana Cake', sell_in = 10, quality = 10)]
+      GildedRose.new(items).update_quality
+      expect(items[0].quality).to eq 8
+    end
+
+    it 'Conjured: quality twice decreases as fast after sell_in' do
+      items = [Item.new(name = 'Conjured Mana Cake', sell_in = 0, quality = 10)]
+      GildedRose.new(items).update_quality
+      expect(items[0].quality).to eq 6
+    end
   end
 
   describe '#update_sell_in' do

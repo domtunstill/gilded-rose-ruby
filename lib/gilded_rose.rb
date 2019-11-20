@@ -19,6 +19,7 @@ class GildedRose
       normal_item_quality(item) unless SPECIAL_ITEMS.include?(item.name)
       brie_quality(item) if item.name == SPECIAL_ITEMS[0]
       backstage_pass_quality(item) if item.name == SPECIAL_ITEMS[1]
+      conjured_item_quality(item) if item.name == SPECIAL_ITEMS[3]
       update_sell_in(item)
     end
   end
