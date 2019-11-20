@@ -17,17 +17,8 @@ class GildedRose
       else
         # adds 1 to special items if quality is less than 50
         if item.quality < 50
-          item.quality += 1
-          if item.name == 'Backstage passes to a TAFKAL80ETC concert'
-            # adds another 1 to concert ticket if quality is less than 50 and sell_in is less than 11
-            if item.sell_in < 11
-              item.quality += 1 if item.quality < 50
-            end
-            # adds another 1 to concert ticket if quality is less than 50 and sell_in is less than 6
-            if item.sell_in < 6
-              item.quality += 1 if item.quality < 50
-            end
-          end
+          item.quality += 1 if item.name == 'Aged Brie'
+          backstage_pass_quality(item) if item.name == 'Backstage passes to a TAFKAL80ETC concert'
         end
       end
 
@@ -59,7 +50,9 @@ class GildedRose
   end
 
   def backstage_pass_quality(item)
-    item.quality = 11
+    item.quality += 1 if item.sell_in < 6
+    item.quality += 1 if item.sell_in < 11
+    item.quality += 1
   end
   
 end

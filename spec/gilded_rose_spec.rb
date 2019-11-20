@@ -58,24 +58,6 @@ describe GildedRose do
       expect(items[0].quality).to eq 12
     end
 
-    it 'Backstage: quality increases as approach concert date' do
-      items = [Item.new(name = 'Backstage passes to a TAFKAL80ETC concert', sell_in = 20, quality = 10)]
-      GildedRose.new(items).update_quality
-      expect(items[0].quality).to eq 11
-    end
-
-    it 'Backstage: quality increases twice as fast once less than 10 days until concert date' do
-      items = [Item.new(name = 'Backstage passes to a TAFKAL80ETC concert', sell_in = 9, quality = 10)]
-      GildedRose.new(items).update_quality
-      expect(items[0].quality).to eq 12
-    end
-
-    it 'Backstage: quality increases three times as fast once less than 5 days until concert date' do
-      items = [Item.new(name = 'Backstage passes to a TAFKAL80ETC concert', sell_in = 4, quality = 10)]
-      GildedRose.new(items).update_quality
-      expect(items[0].quality).to eq 13
-    end
-
     it 'Backstage: Quality drops to 0 after the concert' do
       items = [Item.new(name = 'Backstage passes to a TAFKAL80ETC concert', sell_in = 0, quality = 50)]
       GildedRose.new(items).update_quality
@@ -120,6 +102,11 @@ describe GildedRose do
       expect(item.quality).to eq 11
     end
 
+    it 'Backstage: quality increases as approach concert date' do
+      item = Item.new(name = 'Backstage passes to a TAFKAL80ETC concert', sell_in = 20, quality = 15)
+      subject.backstage_pass_quality(item)
+      expect(item.quality).to eq 16 
+    end
 
     it 'Backstage: quality increases twice as fast once less than 10 days until concert date' do
       item = Item.new(name = 'Backstage passes to a TAFKAL80ETC concert', sell_in = 9, quality = 10)
@@ -127,17 +114,17 @@ describe GildedRose do
       expect(item.quality).to eq 12
     end
 
-    # it 'Backstage: quality increases three times as fast once less than 5 days until concert date' do
-    #   items = [Item.new(name = 'Backstage passes to a TAFKAL80ETC concert', sell_in = 4, quality = 10)]
-    #   GildedRose.new(items).update_quality
-    #   expect(items[0].quality).to eq 13
-    # end
+    it 'Backstage: quality increases three times as fast once less than 5 days until concert date' do
+      item = Item.new(name = 'Backstage passes to a TAFKAL80ETC concert', sell_in = 4, quality = 10)
+      subject.backstage_pass_quality(item)
+      expect(item.quality).to eq 13
+    end
 
     # it 'Backstage: Quality drops to 0 after the concert' do
-    #   items = [Item.new(name = 'Backstage passes to a TAFKAL80ETC concert', sell_in = 0, quality = 50)]
-    #   GildedRose.new(items).update_quality
-    #   expect(items[0].quality).to eq 0
-    end
+    #   item = Item.new(name = 'Backstage passes to a TAFKAL80ETC concert', sell_in = 0, quality = 50)
+    #   subject.backstage_pass_quality(item)
+    #   expect(item.quality).to eq 0
+    # end
 
   end
 end
