@@ -6,14 +6,17 @@ describe GildedRose do
   let(:subject) { described_class.new([]) }
 
   describe 'array of SPECIAL_ITEMS in GildedRose class' do
-    it 'Sulfuras, Hand of Ragnaros has stored' do
+    it 'has Sulfuras, Hand of Ragnaros stored' do
       expect(GildedRose::SPECIAL_ITEMS).to include('Sulfuras, Hand of Ragnaros')
     end
-    it 'Sulfuras, Hand of Ragnaros has stored' do
+    it 'has Backstage passes to a TAFKAL80ETC concert stored' do
       expect(GildedRose::SPECIAL_ITEMS).to include('Backstage passes to a TAFKAL80ETC concert')
     end
-    it 'Sulfuras, Hand of Ragnaros has stored' do
+    it 'has Aged Brie stored' do
       expect(GildedRose::SPECIAL_ITEMS).to include('Aged Brie')
+    end
+    it 'has Conjured Mana Cake has stored' do
+      expect(GildedRose::SPECIAL_ITEMS).to include('Conjured Mana Cake')
     end
   end
 
@@ -231,6 +234,25 @@ describe GildedRose do
       item = Item.new(name = 'Elixir of the Mongoose', sell_in = 0, quality = 10)
       subject.normal_item_quality(item)
       expect(item.quality).to eq 8
+    end
+  end
+
+  describe '#conjured_item_quality' do
+    it 'Conjured: quality of item cannot go negative' do
+      item = Item.new(name = 'Conjured Mana Cake', sell_in = 0, quality = 0)
+      subject.conjured_item_quality(item)
+      expect(item.quality).to eq 0
+    end
+    it 'Conjured: item decreases quality by 2 each day' do
+      item = Item.new(name = 'Conjured Mana Cake', sell_in = 10, quality = 10)
+      subject.conjured_item_quality(item)
+      expect(item.quality).to eq 8
+    end
+
+    it 'Conjured: quality twice decreases as fast after sell_in' do
+      item = Item.new(name = 'Conjured Mana Cake', sell_in = 0, quality = 10)
+      subject.conjured_item_quality(item)
+      expect(item.quality).to eq 6
     end
   end
 end

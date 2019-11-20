@@ -3,7 +3,12 @@
 require 'item'
 
 class GildedRose
-  SPECIAL_ITEMS = ['Aged Brie', 'Backstage passes to a TAFKAL80ETC concert', 'Sulfuras, Hand of Ragnaros']
+  SPECIAL_ITEMS = [
+    'Aged Brie', 
+    'Backstage passes to a TAFKAL80ETC concert', 
+    'Sulfuras, Hand of Ragnaros', 
+    'Conjured Mana Cake'
+  ]
 
   def initialize(items)
     @items = items
@@ -40,6 +45,11 @@ class GildedRose
   def normal_item_quality(item)
     item.quality -= 1 if !min_quality?(item)
     item.quality -= 1 if !min_quality?(item) && out_of_date?(item) 
+  end
+
+  def conjured_item_quality(item)
+    item.quality -= 2 if !min_quality?(item)
+    item.quality -= 2 if !min_quality?(item) && out_of_date?(item) 
   end
 
   private

@@ -29,19 +29,22 @@ New feature. We have recently signed a supplier of conjured items. This requires
 | All: quality of item is never negative  | Item.new(name = 'Elixir of the Mongoose', sell_in = 0, quality = 0) Days 1 | quality = 0 |
 | Sulfuras: never decrease/increase in quality  |  Item.new(name = 'Sulfuras, Hand of Ragnaros', sell_in = 0, quality = 80) Days 1 | quality = 80 |
 | Sulfuras: never decrease/increase sellIn date |  Item.new(name = 'Sulfuras, Hand of Ragnaros', sell_in = 0, quality = 80) Days 1 | sell_in = 0 |
-| Brie: items quality never more than 50 |  Item.new(name = 'Aged Brie', sell_in = 20, quality = 50) Days 1 | quality = 50 |
-| Backstage: items quality never more than 50 |  Item.new(name = 'Backstage passes to a TAFKAL80ETC concert', sell_in = 20, quality = 50) Days 1 | quality = 50 |
 | Normal: item decreases quality each day | Item.new(name = 'Elixir of the Mongoose', sell_in = 10, quality = 10) Days 1 | quality = 9 |
 | Normal: item decreases sell_in each day | Item.new(name = 'Elixir of the Mongoose', sell_in = 10, quality = 10) Days 1 | sell_in = 9 |
 | Normal: quality twice decreases as fast after sell_in | Item.new(name = 'Elixir of the Mongoose', sell_in = 0, quality = 10) Days 1 | quality = 8 |
+| Brie: items quality never more than 50 |  Item.new(name = 'Aged Brie', sell_in = 20, quality = 50) Days 1 | quality = 50 |
 | Brie: items quality increases in value as it gets older |  Item.new(name = 'Aged Brie', sell_in = 5, quality = 10) Days 1 | quality = 11 |
 | Brie: quality increases twice as fast after sellin date |  Item.new(name = 'Aged Brie', sell_in = 0, quality = 10) Days 1 | quality = 12
 | Brie: sell_in value descreases by 1 each day | Item.new(name = 'Aged Brie', sell_in = 10, quality = 10) Days 1 | sell_in = 9 |
+| Backstage: items quality never more than 50 |  Item.new(name = 'Backstage passes to a TAFKAL80ETC concert', sell_in = 20, quality = 50) Days 1 | quality = 50 |
 | Backstage: quality increases as approach concert date |  Item.new(name = 'Backstage passes to a TAFKAL80ETC concert', sell_in = 20, quality = 10) Days 1 | quality = 11 |
 | Backstage: quality increases twice as fast once less than 10 days until concert date |  Item.new(name = 'Backstage passes to a TAFKAL80ETC concert', sell_in = 9, quality = 20) Days 1 | quality = 22 |
 | Backstage: quality increases three times as fast once less than 5 days until concert date |  Item.new(name = 'Backstage passes to a TAFKAL80ETC concert', sell_in = 4, quality = 30) Days 1 | quality = 33 |
 | Backstage: Quality drops to 0 after the concert |  Item.new(name = 'Backstage passes to a TAFKAL80ETC concert', sell_in = 0, quality = 50) Days 1 | quality = 0 |
 | Backstage: sell_in value descreases by 1 each day | Item.new(name = 'Backstage passes to a TAFKAL80ETC concert', sell_in = 10, quality = 10) Days 1 | sell_in = 9 |
+| Conjured: decrease in quality twice as fast as normal items | Item.new(name = 'Conjured Mana Cake', sell_in = 10, quality = 10) Days 1 | sell_in = 9 |
+| Conjured: decrease in quality twice as fast as normal items | Item.new(name = 'Conjured Mana Cake', sell_in = 10, quality = 10) Days 1 | quality = 8 |
+| Conjured: decrease in quality twice as fast as normal items, passed sell_in date | Item.new(name = 'Conjured Mana Cake', sell_in = 0, quality = 10) Days 1 | quality = 6 |
 
 ### Edge cases
 
