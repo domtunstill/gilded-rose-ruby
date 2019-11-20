@@ -22,12 +22,6 @@ describe GildedRose do
       expect(items[0].quality).to eq 80
     end
 
-    it 'Sulfuras: never decrease/increase sellIn date' do
-      items = [Item.new(name = 'Sulfuras, Hand of Ragnaros', sell_in = 0, quality = 80)]
-      GildedRose.new(items).update_quality
-      expect(items[0].sell_in).to eq 0
-    end
-
     it 'Brie: items quality never more than 50' do
       items = [Item.new(name = 'Aged Brie', sell_in = 20, quality = 50)]
       GildedRose.new(items).update_quality
@@ -46,12 +40,6 @@ describe GildedRose do
       expect(items[0].quality).to eq 9
     end
 
-    it 'Normal: item decreases sell_in each day' do
-      items = [Item.new(name = 'Elixir of the Mongoose', sell_in = 10, quality = 10)]
-      GildedRose.new(items).update_quality
-      expect(items[0].sell_in).to eq 9
-    end
-
     it 'Normal: quality twice decreases as fast after sell_in' do
       items = [Item.new(name = 'Elixir of the Mongoose', sell_in = 0, quality = 10)]
       GildedRose.new(items).update_quality
@@ -68,12 +56,6 @@ describe GildedRose do
       items = [Item.new(name = 'Aged Brie', sell_in = 0, quality = 10)]
       GildedRose.new(items).update_quality
       expect(items[0].quality).to eq 12
-    end
-
-    it 'Brie: sell_in value descreases by 1 each day' do
-      items = [Item.new(name = 'Aged Brie', sell_in = 10, quality = 10)]
-      GildedRose.new(items).update_quality
-      expect(items[0].sell_in).to eq 9
     end
 
     it 'Backstage: quality increases as approach concert date' do
@@ -100,12 +82,6 @@ describe GildedRose do
       expect(items[0].quality).to eq 0
     end
 
-    it 'Backstage: sell_in value descreases by 1 each day' do
-      items = [Item.new(name = 'Backstage passes to a TAFKAL80ETC concert', sell_in = 10, quality = 10)]
-      GildedRose.new(items).update_quality
-      expect(items[0].sell_in).to eq 9
-    end
-
   end
 
   describe '#update_sell_in' do
@@ -124,17 +100,17 @@ describe GildedRose do
       expect(item.sell_in).to eq 9
     end
 
-    # it 'Brie: sell_in value descreases by 1 each day' do
-    #   items = [Item.new(name = 'Aged Brie', sell_in = 10, quality = 10)]
-    #   GildedRose.new(items).update_quality
-    #   expect(items[0].sell_in).to eq 9
-    # end
+    it 'Brie: sell_in value descreases by 1 each day' do
+      item = Item.new(name = 'Aged Brie', sell_in = 10, quality = 10)
+      subject.update_sell_in(item)
+      expect(item.sell_in).to eq 9
+    end
 
-    # it 'Backstage: sell_in value descreases by 1 each day' do
-    #   items = [Item.new(name = 'Backstage passes to a TAFKAL80ETC concert', sell_in = 10, quality = 10)]
-    #   GildedRose.new(items).update_quality
-    #   expect(items[0].sell_in).to eq 9
-    # end
+    it 'Backstage: sell_in value descreases by 1 each day' do
+      item = Item.new(name = 'Backstage passes to a TAFKAL80ETC concert', sell_in = 10, quality = 10)
+      subject.update_sell_in(item)
+      expect(item.sell_in).to eq 9
+    end
 
   end
 
