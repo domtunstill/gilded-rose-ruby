@@ -204,4 +204,8 @@ describe GildedRose do
 
   end
 
+  describe '#normal_item_quality' do
+
+  end
+
 end

@@ -43,14 +43,20 @@ class GildedRose
 
   def backstage_pass_quality(item)
     return item.quality = 0 if item.sell_in <= 0
-    item.quality += 1 if item.sell_in < 6 && item.quality < 50
-    item.quality += 1 if item.sell_in < 11 && item.quality < 50
-    item.quality += 1 if item.quality < 50
+    item.quality += 1 if item.sell_in < 6 && !max_quality?(item)
+    item.quality += 1 if item.sell_in < 11 && !max_quality?(item)
+    item.quality += 1 if !max_quality?(item)
   end
 
   def brie_quality(item)
-    item.quality += 1 if item.quality < 50
-    item.quality += 1 if item.sell_in <= 0 && item.quality < 50
+    item.quality += 1 if !max_quality?(item)
+    item.quality += 1 if item.sell_in <= 0 && !max_quality?(item)
+  end
+
+  private
+
+  def max_quality?(item)
+    item.quality >= 50
   end
   
 end

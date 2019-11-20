@@ -208,6 +208,10 @@
         null,
         null,
         null,
+        1,
+        null,
+        null,
+        null,
         null
       ],
       "/Users/student/Documents/Projects/Week-10/Gilded Rose Ruby/lib/gilded_rose.rb": [
@@ -266,6 +270,12 @@
         7,
         null,
         null,
+        1,
+        null,
+        1,
+        12,
+        null,
+        null,
         null
       ],
       "/Users/student/Documents/Projects/Week-10/Gilded Rose Ruby/lib/item.rb": [
@@ -312,6 +322,6 @@
         null
       ]
     },
-    "timestamp": 1574266799
+    "timestamp": 1574267179
   }
 }
