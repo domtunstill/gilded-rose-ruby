@@ -11,9 +11,7 @@ class GildedRose
     @items.each do |item|
       # takes away 1 from normal item qualities if above 0
       if (item.name != 'Aged Brie') && (item.name != 'Backstage passes to a TAFKAL80ETC concert')
-        if item.quality > 0
-          item.quality -= 1 if item.name != 'Sulfuras, Hand of Ragnaros'
-        end
+        normal_item_quality(item) if item.name != 'Sulfuras, Hand of Ragnaros'
       else
         # adds 1 to special items if quality is less than 50
         brie_quality(item) if item.name == 'Aged Brie'
@@ -22,16 +20,6 @@ class GildedRose
 
       update_sell_in(item)
 
-      # takes away another 1 from normal item qualities if above 0 and less than 0 for sell_in
-      if item.sell_in < 0
-        if item.name != 'Aged Brie'
-          if item.name != 'Backstage passes to a TAFKAL80ETC concert'
-            if item.quality > 0
-              item.quality -= 1 if item.name != 'Sulfuras, Hand of Ragnaros'
-            end
-          end
-        end
-      end
     end
   end
 
@@ -55,6 +43,7 @@ class GildedRose
 
   def normal_item_quality(item)
     item.quality -= 1 if item.quality > 0
+    item.quality -= 1 if item.quality > 0 && item.sell_in <= 0
   end
 
   private

@@ -216,17 +216,11 @@ describe GildedRose do
       expect(item.quality).to eq 9
     end
 
-    # it 'Normal: item decreases sell_in each day' do
-    #   items = [Item.new(name = 'Elixir of the Mongoose', sell_in = 10, quality = 10)]
-    #   GildedRose.new(items).update_quality
-    #   expect(items[0].sell_in).to eq 9
-    # end
-
-    # it 'Normal: quality twice decreases as fast after sell_in' do
-    #   items = [Item.new(name = 'Elixir of the Mongoose', sell_in = 0, quality = 10)]
-    #   GildedRose.new(items).update_quality
-    #   expect(items[0].quality).to eq 8
-    # end
+    it 'Normal: quality twice decreases as fast after sell_in' do
+      item = Item.new(name = 'Elixir of the Mongoose', sell_in = 0, quality = 10)
+      subject.normal_item_quality(item)
+      expect(item.quality).to eq 8
+    end
   end
 
 end
