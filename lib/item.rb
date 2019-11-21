@@ -15,28 +15,50 @@ class Item
   end
   end
 
-  class NormalItem < Item
+class NormalItem < Item
 
-    def update_quality
-      @quality -= 1 if !min_quality?
-      @quality -= 1 if !min_quality? && out_of_date?
-    end
-
-    def min_quality?
-      @quality == 0
-    end
-
-    def out_of_date?
-      @sell_in <= 0
-    end
-
+  def update_quality
+    @quality -= 1 if !min_quality?
+    @quality -= 1 if !min_quality? && out_of_date?
   end
 
-
-  class LegendaryItem < Item
-
-    def update_quality
-      return
-    end
-
+  def min_quality?
+    @quality == 0
   end
+
+  def out_of_date?
+    @sell_in <= 0
+  end
+
+end
+
+
+class LegendaryItem < Item
+
+  def update_quality
+    return
+  end
+
+end
+
+
+class CheeseItem < Item
+
+  def update_quality
+    @quality += 1 if !max_quality?
+    @quality += 1 if !max_quality? && out_of_date?
+  end
+
+  def max_quality?
+    @quality == 50
+  end
+
+  def min_quality?
+    @quality == 0
+  end
+
+  def out_of_date?
+    @sell_in <= 0
+  end
+
+end

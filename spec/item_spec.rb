@@ -65,3 +65,31 @@ describe LegendaryItem do
   # end
 
 end
+
+describe CheeseItem do
+
+  it 'Brie: items quality never more than 50' do
+    cheese_item = CheeseItem.new(name = 'Aged Brie', sell_in = 20, quality = 50)
+    cheese_item.update_quality
+    expect(cheese_item.quality).to eq 50
+  end
+
+  it 'Brie: items quality increases in value as it gets older' do
+    cheese_item = CheeseItem.new(name = 'Aged Brie', sell_in = 5, quality = 10)
+    cheese_item.update_quality
+    expect(cheese_item.quality).to eq 11
+  end
+
+  it 'Brie: quality increases twice as fast after sellin date' do
+    cheese_item = CheeseItem.new(name = 'Aged Brie', sell_in = 0, quality = 10)
+    cheese_item.update_quality
+    expect(cheese_item.quality).to eq 12
+  end
+
+  # it 'Brie: sell_in value descreases by 1 each day' do
+  #   cheese_item = CheeseItem.new(name = 'Aged Brie', sell_in = 10, quality = 10)
+  #   cheese_item.update_quality
+  #   expect(cheese_item.sell_in).to eq 9
+  # end
+
+end
