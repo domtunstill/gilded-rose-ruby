@@ -13,7 +13,7 @@ describe GildedRose do
       expect(GildedRose::SPECIAL_ITEMS).to include('Backstage passes to a TAFKAL80ETC concert')
     end
     it 'has Aged Brie stored' do
-      expect(GildedRose::SPECIAL_ITEMS).to include('Aged Brie')
+      expect(GildedRose::ITEMS).to include('Aged Brie')
     end
     it 'has Conjured Mana Cake has stored' do
       expect(GildedRose::SPECIAL_ITEMS).to include('Conjured Mana Cake')
