@@ -38,6 +38,13 @@ describe GildedRose do
       expect(items[0].class).to eq LegendaryItem
     end
 
+    it 'returns an array of sorted cheese item objects' do
+      items = [Item.new(name = 'Aged Brie', sell_in = 0, quality = 12)]
+      list = GildedRose.new(items)
+      list.sort_items
+      expect(items[0].class).to eq CheeseItem
+    end
+
   end
 
   describe '#update_quality' do
