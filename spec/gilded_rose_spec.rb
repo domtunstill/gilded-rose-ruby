@@ -7,16 +7,16 @@ describe GildedRose do
 
   describe 'array of SPECIAL_ITEMS in GildedRose class' do
     it 'has Sulfuras, Hand of Ragnaros stored' do
-      expect(GildedRose::SPECIAL_ITEMS).to include('Sulfuras, Hand of Ragnaros')
+      expect(GildedRose::ITEMS).to include('Sulfuras, Hand of Ragnaros')
     end
     it 'has Backstage passes to a TAFKAL80ETC concert stored' do
-      expect(GildedRose::SPECIAL_ITEMS).to include('Backstage passes to a TAFKAL80ETC concert')
+      expect(GildedRose::ITEMS).to include('Backstage passes to a TAFKAL80ETC concert')
     end
     it 'has Aged Brie stored' do
       expect(GildedRose::ITEMS).to include('Aged Brie')
     end
     it 'has Conjured Mana Cake has stored' do
-      expect(GildedRose::SPECIAL_ITEMS).to include('Conjured Mana Cake')
+      expect(GildedRose::ITEMS).to include('Conjured Mana Cake')
     end
   end
 
@@ -50,6 +50,13 @@ describe GildedRose do
       list = GildedRose.new(items)
       list.sort_items
       expect(items[0].class).to eq BackstagePassItem
+    end
+
+    it 'returns an array of sorted conjured item objects' do
+      items = [Item.new(name = 'Conjured Mana Cake', sell_in = 10, quality = 12)]
+      list = GildedRose.new(items)
+      list.sort_items
+      expect(items[0].class).to eq ConjuredItem
     end
 
   end

@@ -3,12 +3,14 @@
 require_relative 'item'
 
 class GildedRose
-  SPECIAL_ITEMS = [
-    'Aged Brie', 
-    'Backstage passes to a TAFKAL80ETC concert', 
-    'Sulfuras, Hand of Ragnaros', 
-    'Conjured Mana Cake'
-  ]
+
+  ITEMS = { 
+    "Elixir of the Mongoose" => NormalItem, 
+    'Sulfuras, Hand of Ragnaros' => LegendaryItem,
+    'Aged Brie' => CheeseItem,
+    'Backstage passes to a TAFKAL80ETC concert' => BackstagePassItem,
+    'Conjured Mana Cake' => ConjuredItem
+  }
 
   def initialize(items)
     @items = items
@@ -16,20 +18,13 @@ class GildedRose
 
   def update_quality
     @items.each do |item|
-      normal_item_quality(item) unless SPECIAL_ITEMS.include?(item.name)
-      brie_quality(item) if item.name == SPECIAL_ITEMS[0]
-      backstage_pass_quality(item) if item.name == SPECIAL_ITEMS[1]
-      conjured_item_quality(item) if item.name == SPECIAL_ITEMS[3]
+      normal_item_quality(item) unless ITEMS.include?(item.name)
+      brie_quality(item) if item.name == ITEMS[0]
+      backstage_pass_quality(item) if item.name == ITEMS[1]
+      conjured_item_quality(item) if item.name == ITEMS[3]
       update_sell_in(item)
     end
   end
-
-  ITEMS = { 
-    "Elixir of the Mongoose" => NormalItem, 
-    'Sulfuras, Hand of Ragnaros' => LegendaryItem,
-    'Aged Brie' => CheeseItem,
-    'Backstage passes to a TAFKAL80ETC concert' => BackstagePassItem
-  }
 
   def sort_items
     @items.map! do |item|
