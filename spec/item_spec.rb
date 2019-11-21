@@ -35,8 +35,19 @@ describe MainItem do
       item = MainItem.new('Elixir of the Mongoose', 5, 45)
       expect(item.max_quality?).to eq false
     end
-
   end
+
+  describe '#min_quality?' do
+  it 'returns true in min quality 0 is reached' do
+    item = MainItem.new('Elixir of the Mongoose', 5, 0)
+    expect(item.min_quality?).to eq true
+  end
+
+  it 'returns true in min quality 0 is not reached' do
+    item = MainItem.new('Elixir of the Mongoose', 5, 10)
+    expect(item.min_quality?).to eq false
+  end
+end
 
 end
 
