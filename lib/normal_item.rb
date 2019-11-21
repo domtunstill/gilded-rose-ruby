@@ -1,2 +1,3 @@
-require_relative 'item'
+# frozen_string_literal: true
 
+require_relative 'item'

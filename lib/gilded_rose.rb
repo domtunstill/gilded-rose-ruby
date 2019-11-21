@@ -2,14 +2,14 @@
 
 require_relative 'item'
 
+# GildedRose class is the default class and handles the list of items
 class GildedRose
-
-  SPECIAL_ITEMS = { 
+  SPECIAL_ITEMS = {
     'Sulfuras, Hand of Ragnaros' => LegendaryItem,
     'Aged Brie' => CheeseItem,
     'Backstage passes to a TAFKAL80ETC concert' => BackstagePassItem,
     'Conjured Mana Cake' => ConjuredItem
-  }
+  }.freeze
 
   def initialize(items)
     @items = items
@@ -17,17 +17,16 @@ class GildedRose
   end
 
   def update_quality
-    @items.each { |item| item.update_quality }
+    @items.each(&:update_quality)
   end
 
   def sort_items
     @items.map! do |item|
       if SPECIAL_ITEMS.include?(item.name)
-        item = SPECIAL_ITEMS[item.name].new(name = item.name, sell_in = item.sell_in, quality = item.quality)
+        SPECIAL_ITEMS[item.name].new(item.name, item.sell_in, item.quality)
       else
-        item = NormalItem.new(name = item.name, sell_in = item.sell_in, quality = item.quality)
+        NormalItem.new(item.name, item.sell_in, item.quality)
       end
     end
   end
-
 end
