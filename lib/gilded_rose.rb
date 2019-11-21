@@ -24,9 +24,14 @@ class GildedRose
     end
   end
 
+  ITEMS = { 
+    "Elixir of the Mongoose" => NormalItem, 
+    'Sulfuras, Hand of Ragnaros' => LegendaryItem
+  }
+
   def sort_items
     @items.map! do |item|
-      item = NormalItem.new(name = item.name, sell_in = item.sell_in, quality = item.quality)
+      item = ITEMS[item.name].new(name = item.name, sell_in = item.sell_in, quality = item.quality)
     end
   end
 

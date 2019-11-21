@@ -24,12 +24,20 @@ describe GildedRose do
   
   # let(:item) { :double }
 
-    it 'returns an array of sorted item objects' do
+    it 'returns an array of sorted normal item objects' do
       items = [Item.new(name = 'Elixir of the Mongoose', sell_in = 0, quality = 0)]
       list = GildedRose.new(items)
       list.sort_items
       expect(items[0].class).to eq NormalItem
     end
+
+    it 'returns an array of sorted legendary item objects' do
+      items = [Item.new(name = 'Sulfuras, Hand of Ragnaros', sell_in = 0, quality = 80)]
+      list = GildedRose.new(items)
+      list.sort_items
+      expect(items[0].class).to eq LegendaryItem
+    end
+
   end
 
   describe '#update_quality' do
