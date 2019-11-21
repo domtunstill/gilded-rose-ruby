@@ -23,6 +23,23 @@ describe Item do
   end
 end
 
+describe MainItem do
+
+  describe '#max_quality?' do
+    it 'returns true in max quality 50 is reached' do
+      item = MainItem.new('Elixir of the Mongoose', 5, 50)
+      expect(item.max_quality?).to eq true
+    end
+
+    it 'returns true in max quality 50 is not reached' do
+      item = MainItem.new('Elixir of the Mongoose', 5, 45)
+      expect(item.max_quality?).to eq false
+    end
+
+  end
+
+end
+
 describe NormalItem do
 
   it 'All items: quality of item cannot go negative' do
@@ -148,5 +165,5 @@ describe ConjuredItem do
     conjured_item.update_quality
     expect(conjured_item.quality).to eq 6
   end
-  
+
 end

@@ -13,9 +13,25 @@ class Item
   def to_s
     "#{@name}, #{@sell_in}, #{@quality}"
   end
+end
+
+class MainItem < Item
+
+  def max_quality?
+    @quality == 50
   end
 
-class NormalItem < Item
+  def min_quality?
+      @quality == 0
+  end
+
+  def out_of_date?
+  @sell_in <= 0
+  end
+
+end
+
+class NormalItem < MainItem
 
   def update_quality
     @quality -= 1 if !min_quality?
@@ -33,7 +49,7 @@ class NormalItem < Item
 end
 
 
-class LegendaryItem < Item
+class LegendaryItem < MainItem
 
   def update_quality
     return
@@ -42,7 +58,7 @@ class LegendaryItem < Item
 end
 
 
-class CheeseItem < Item
+class CheeseItem < MainItem
 
   def update_quality
     @quality += 1 if !max_quality?
@@ -59,7 +75,7 @@ class CheeseItem < Item
 
 end
 
-  class BackstagePassItem < Item
+  class BackstagePassItem < MainItem
 
     def update_quality
       return @quality = 0 if out_of_date?
@@ -79,7 +95,7 @@ end
 
   end
 
-  class ConjuredItem < Item
+  class ConjuredItem < MainItem
 
     def update_quality
       @quality -= 2 if !min_quality?
