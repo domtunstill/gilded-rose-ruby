@@ -25,22 +25,27 @@ end
 
 describe NormalItem do
 
-  let(:subject) { described_class.new(name = 'Elixir of the Mongoose', sell_in = 5, quality = 10) }
+  it 'All items: quality of item cannot go negative' do
+    normal_item = NormalItem.new(name = 'Elixir of the Mongoose', sell_in = 0, quality = 0)
+    normal_item.update_quality
+    expect(normal_item.quality).to eq 0
+  end
 
   it 'Normal: item decreases quality each day' do
-    subject.update_quality
-    expect(subject.quality).to eq 9
+    normal_item = NormalItem.new(name = 'Elixir of the Mongoose', sell_in = 10, quality = 10)
+    normal_item.update_quality
+    expect(normal_item.quality).to eq 9
   end
 
   # it 'Normal: item decreases sell_in each day' do
-  #   items = [Item.new(name = 'Elixir of the Mongoose', sell_in = 10, quality = 10)]
-  #   GildedRose.new(items).update_quality
-  #   expect(items[0].sell_in).to eq 9
+  #   subject.update_quality
+  #   expect(subject.sell_in).to eq 9
   # end
 
-  # it 'Normal: quality twice decreases as fast after sell_in' do
-  #   items = [Item.new(name = 'Elixir of the Mongoose', sell_in = 0, quality = 10)]
-  #   GildedRose.new(items).update_quality
-  #   expect(items[0].quality).to eq 8
-  # end
+  it 'Normal: quality twice decreases as fast after sell_in' do
+    normal_item = NormalItem.new(name = 'Elixir of the Mongoose', sell_in = 0, quality = 10)
+    normal_item.update_quality
+    expect(normal_item.quality).to eq 8
+  end
+
 end
