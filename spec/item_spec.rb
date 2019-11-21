@@ -26,28 +26,40 @@ end
 describe MainItem do
 
   describe '#max_quality?' do
-    it 'returns true in max quality 50 is reached' do
+    it 'returns true if max quality 50 is reached' do
       item = MainItem.new('Elixir of the Mongoose', 5, 50)
       expect(item.max_quality?).to eq true
     end
 
-    it 'returns true in max quality 50 is not reached' do
+    it 'returns false if max quality 50 is not reached' do
       item = MainItem.new('Elixir of the Mongoose', 5, 45)
       expect(item.max_quality?).to eq false
     end
   end
 
   describe '#min_quality?' do
-  it 'returns true in min quality 0 is reached' do
-    item = MainItem.new('Elixir of the Mongoose', 5, 0)
-    expect(item.min_quality?).to eq true
+    it 'returns true if min quality 0 is reached' do
+      item = MainItem.new('Elixir of the Mongoose', 5, 0)
+      expect(item.min_quality?).to eq true
+    end
+
+    it 'returns false if min quality 0 is not reached' do
+      item = MainItem.new('Elixir of the Mongoose', 5, 10)
+      expect(item.min_quality?).to eq false
+    end
   end
 
-  it 'returns true in min quality 0 is not reached' do
-    item = MainItem.new('Elixir of the Mongoose', 5, 10)
-    expect(item.min_quality?).to eq false
+  describe '#out_of_date?' do
+    it 'returns true if sell_in is less than or equal to 0' do
+      item = MainItem.new('Elixir of the Mongoose', 0, 10)
+      expect(item.out_of_date?).to eq true
+    end
+
+    it 'returns false if sell_in is not less than or equal to 0' do
+      item = MainItem.new('Elixir of the Mongoose', 5, 10)
+      expect(item.out_of_date?).to eq false
+    end
   end
-end
 
 end
 
