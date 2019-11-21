@@ -62,11 +62,6 @@ describe MainItem do
   end
 
   describe '#update_sell_in' do
-    # it 'Sulfuras: never decrease/increase sellIn date' do
-    #   item = Item.new(name = 'Sulfuras, Hand of Ragnaros', sell_in = 0, quality = 80)
-    #   subject.update_sell_in(item)
-    #   expect(item.sell_in).to eq 0
-    # end
 
     it 'Normal: item decreases sell_in each day' do
       item = MainItem.new(name = 'Elixir of the Mongoose', sell_in = 10, quality = 10)

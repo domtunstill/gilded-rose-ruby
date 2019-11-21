@@ -35,6 +35,14 @@ class MainItem < Item
 
 end
 
+class LegendaryItem < Item
+
+  def update_quality
+    return
+  end
+
+end
+
 class NormalItem < MainItem
 
   def update_quality
@@ -44,16 +52,6 @@ class NormalItem < MainItem
   end
 
 end
-
-
-class LegendaryItem < MainItem
-
-  def update_quality
-    return
-  end
-
-end
-
 
 class CheeseItem < MainItem
 
