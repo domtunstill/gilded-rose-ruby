@@ -33,3 +33,10 @@ class Item
   end
 
 
+  class LegendaryItem < Item
+
+    def update_quality
+      return
+    end
+
+  end

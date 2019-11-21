@@ -49,3 +49,19 @@ describe NormalItem do
   end
 
 end
+
+describe LegendaryItem do
+
+  it 'Sulfuras: never decrease/increase in quality' do
+    legendary_item = LegendaryItem.new(name = 'Sulfuras, Hand of Ragnaros', sell_in = 0, quality = 80)
+    legendary_item.update_quality
+    expect(legendary_item.quality).to eq 80
+  end
+
+  # it 'Sulfuras: never decrease/increase sellIn date' do
+  #   items = [Item.new(name = 'Sulfuras, Hand of Ragnaros', sell_in = 0, quality = 80)]
+  #   GildedRose.new(items).update_quality
+  #   expect(items[0].sell_in).to eq 0
+  # end
+
+end
