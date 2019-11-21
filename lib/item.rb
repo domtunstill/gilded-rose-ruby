@@ -16,5 +16,11 @@ class Item
   end
 
   class NormalItem < Item
+
+    def update_quality
+      @quality = 9
+    end
+
   end
+
 
