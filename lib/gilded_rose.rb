@@ -27,7 +27,8 @@ class GildedRose
   ITEMS = { 
     "Elixir of the Mongoose" => NormalItem, 
     'Sulfuras, Hand of Ragnaros' => LegendaryItem,
-    'Aged Brie' => CheeseItem
+    'Aged Brie' => CheeseItem,
+    'Backstage passes to a TAFKAL80ETC concert' => BackstagePassItem
   }
 
   def sort_items

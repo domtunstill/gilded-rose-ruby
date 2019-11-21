@@ -45,6 +45,13 @@ describe GildedRose do
       expect(items[0].class).to eq CheeseItem
     end
 
+    it 'returns an array of sorted backstage pass item objects' do
+      items = [Item.new(name = 'Backstage passes to a TAFKAL80ETC concert', sell_in = 10, quality = 12)]
+      list = GildedRose.new(items)
+      list.sort_items
+      expect(items[0].class).to eq BackstagePassItem
+    end
+
   end
 
   describe '#update_quality' do
