@@ -24,6 +24,12 @@ class GildedRose
     end
   end
 
+  def sort_items
+    @items.map! do |item|
+      item = NormalItem.new(name = item.name, sell_in = item.sell_in, quality = item.quality)
+    end
+  end
+
   def update_sell_in(item)
     return if item.name == 'Sulfuras, Hand of Ragnaros'
 
