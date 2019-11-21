@@ -93,3 +93,40 @@ describe CheeseItem do
   # end
 
 end
+
+describe BackstagePassItem do
+  it 'Backstage: items quality never more than 50' do
+    pass_item = BackstagePassItem.new(name = 'Backstage passes to a TAFKAL80ETC concert', sell_in = 20, quality = 50)
+    pass_item.update_quality
+    expect(pass_item.quality).to eq 50
+  end
+  it 'Backstage: quality increases as approach concert date' do
+    pass_item = BackstagePassItem.new(name = 'Backstage passes to a TAFKAL80ETC concert', sell_in = 20, quality = 10)
+    pass_item.update_quality
+    expect(pass_item.quality).to eq 11
+  end
+
+  it 'Backstage: quality increases twice as fast once less than 10 days until concert date' do
+    pass_item = BackstagePassItem.new(name = 'Backstage passes to a TAFKAL80ETC concert', sell_in = 9, quality = 10)
+    pass_item.update_quality
+    expect(pass_item.quality).to eq 12
+  end
+
+  it 'Backstage: quality increases three times as fast once less than 5 days until concert date' do
+    pass_item = BackstagePassItem.new(name = 'Backstage passes to a TAFKAL80ETC concert', sell_in = 4, quality = 10)
+    pass_item.update_quality
+    expect(pass_item.quality).to eq 13
+  end
+
+  it 'Backstage: Quality drops to 0 after the concert' do
+    pass_item = BackstagePassItem.new(name = 'Backstage passes to a TAFKAL80ETC concert', sell_in = 0, quality = 50)
+    pass_item.update_quality
+    expect(pass_item.quality).to eq 0
+  end
+
+  # it 'Backstage: sell_in value descreases by 1 each day' do
+  #   items = [Item.new(name = 'Backstage passes to a TAFKAL80ETC concert', sell_in = 10, quality = 10)]
+  #   GildedRose.new(items).update_quality
+  #   expect(items[0].sell_in).to eq 9
+  # end
+end

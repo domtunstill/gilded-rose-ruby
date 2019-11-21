@@ -53,12 +53,28 @@ class CheeseItem < Item
     @quality == 50
   end
 
-  def min_quality?
-    @quality == 0
-  end
-
   def out_of_date?
     @sell_in <= 0
   end
 
 end
+
+  class BackstagePassItem < Item
+
+    def update_quality
+      return @quality = 0 if out_of_date?
+  
+      @quality += 1 if !max_quality? && @sell_in < 6
+      @quality += 1 if !max_quality? && @sell_in < 11
+      @quality += 1 if !max_quality?
+    end
+
+    def max_quality?
+      @quality == 50
+    end
+  
+    def out_of_date?
+      @sell_in <= 0
+    end
+
+  end
