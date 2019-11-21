@@ -29,6 +29,10 @@ class MainItem < Item
   @sell_in <= 0
   end
 
+  def update_sell_in
+    @sell_in -= 1
+  end
+
 end
 
 class NormalItem < MainItem
@@ -36,14 +40,7 @@ class NormalItem < MainItem
   def update_quality
     @quality -= 1 if !min_quality?
     @quality -= 1 if !min_quality? && out_of_date?
-  end
-
-  def min_quality?
-    @quality == 0
-  end
-
-  def out_of_date?
-    @sell_in <= 0
+    update_sell_in
   end
 
 end
@@ -63,14 +60,7 @@ class CheeseItem < MainItem
   def update_quality
     @quality += 1 if !max_quality?
     @quality += 1 if !max_quality? && out_of_date?
-  end
-
-  def max_quality?
-    @quality == 50
-  end
-
-  def out_of_date?
-    @sell_in <= 0
+    update_sell_in
   end
 
 end
@@ -83,14 +73,7 @@ end
       @quality += 1 if !max_quality? && @sell_in < 6
       @quality += 1 if !max_quality? && @sell_in < 11
       @quality += 1 if !max_quality?
-    end
-
-    def max_quality?
-      @quality == 50
-    end
-  
-    def out_of_date?
-      @sell_in <= 0
+      update_sell_in
     end
 
   end
@@ -100,14 +83,7 @@ end
     def update_quality
       @quality -= 2 if !min_quality?
       @quality -= 2 if !min_quality? && out_of_date? 
-    end
-
-    def min_quality?
-      @quality == 0
-    end
-  
-    def out_of_date?
-      @sell_in <= 0
+      update_sell_in
     end
     
   end

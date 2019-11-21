@@ -18,22 +18,13 @@ class GildedRose
 
   def update_quality
     sort_items
-    @items.each do |item| 
-      item.update_quality
-      update_sell_in(item)
-    end
+    @items.each { |item| item.update_quality }
   end
 
   def sort_items
     @items.map! do |item|
       item = SPECIAL_ITEMS[item.name].new(name = item.name, sell_in = item.sell_in, quality = item.quality)
     end
-  end
-
-  def update_sell_in(item)
-    return if item.name == 'Sulfuras, Hand of Ragnaros'
-
-    item.sell_in -= 1
   end
 
 end

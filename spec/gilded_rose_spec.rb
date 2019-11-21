@@ -3,9 +3,8 @@
 require 'gilded_rose'
 
 describe GildedRose do
-  let(:subject) { described_class.new([]) }
 
-  describe 'array of SPECIAL_ITEMS in GildedRose class' do
+  describe 'hash of SPECIAL_ITEMS in GildedRose class' do
     it 'has Sulfuras, Hand of Ragnaros stored' do
       expect(GildedRose::SPECIAL_ITEMS).to include('Sulfuras, Hand of Ragnaros')
     end
@@ -21,8 +20,6 @@ describe GildedRose do
   end
 
   describe '#sort_items' do
-  
-  # let(:item) { :double }
 
     it 'returns an array of sorted normal item objects' do
       items = [Item.new(name = 'Elixir of the Mongoose', sell_in = 0, quality = 0)]
@@ -179,32 +176,6 @@ describe GildedRose do
       items = [Item.new(name = 'Conjured Mana Cake', sell_in = 0, quality = 10)]
       GildedRose.new(items).update_quality
       expect(items[0].quality).to eq 6
-    end
-  end
-
-  describe '#update_sell_in' do
-    it 'Sulfuras: never decrease/increase sellIn date' do
-      item = Item.new(name = 'Sulfuras, Hand of Ragnaros', sell_in = 0, quality = 80)
-      subject.update_sell_in(item)
-      expect(item.sell_in).to eq 0
-    end
-
-    it 'Normal: item decreases sell_in each day' do
-      item = Item.new(name = 'Elixir of the Mongoose', sell_in = 10, quality = 10)
-      subject.update_sell_in(item)
-      expect(item.sell_in).to eq 9
-    end
-
-    it 'Brie: sell_in value descreases by 1 each day' do
-      item = Item.new(name = 'Aged Brie', sell_in = 10, quality = 10)
-      subject.update_sell_in(item)
-      expect(item.sell_in).to eq 9
-    end
-
-    it 'Backstage: sell_in value descreases by 1 each day' do
-      item = Item.new(name = 'Backstage passes to a TAFKAL80ETC concert', sell_in = 10, quality = 10)
-      subject.update_sell_in(item)
-      expect(item.sell_in).to eq 9
     end
   end
 
