@@ -130,3 +130,23 @@ describe BackstagePassItem do
   #   expect(items[0].sell_in).to eq 9
   # end
 end
+
+describe ConjuredItem do
+
+  it 'Conjured: quality of item cannot go negative' do
+    conjured_item = ConjuredItem.new(name = 'Conjured Mana Cake', sell_in = 0, quality = 0)
+    conjured_item.update_quality
+    expect(conjured_item.quality).to eq 0
+  end
+  it 'Conjured: item decreases quality by 2 each day' do
+    conjured_item = ConjuredItem.new(name = 'Conjured Mana Cake', sell_in = 10, quality = 10)
+    conjured_item.update_quality
+    expect(conjured_item.quality).to eq 8
+  end
+  it 'Conjured: quality twice decreases as fast after sell_in' do
+    conjured_item = ConjuredItem.new(name = 'Conjured Mana Cake', sell_in = 0, quality = 10)
+    conjured_item.update_quality
+    expect(conjured_item.quality).to eq 6
+  end
+  
+end

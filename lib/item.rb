@@ -78,3 +78,20 @@ end
     end
 
   end
+
+  class ConjuredItem < Item
+
+    def update_quality
+      @quality -= 2 if !min_quality?
+      @quality -= 2 if !min_quality? && out_of_date? 
+    end
+
+    def min_quality?
+      @quality == 0
+    end
+  
+    def out_of_date?
+      @sell_in <= 0
+    end
+    
+  end
