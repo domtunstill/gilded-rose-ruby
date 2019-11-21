@@ -22,3 +22,7 @@ describe Item do
     end
   end
 end
+
+describe NormalItem do
+  
+end

@@ -305,6 +305,24 @@
         null,
         null,
         null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
         1,
         24,
         null,
@@ -352,6 +370,7 @@
       ],
       "/Users/student/Documents/Projects/Week-10/Gilded Rose Ruby/lib/item.rb": [
         null,
+        1,
         null,
         1,
         1,
@@ -365,6 +384,25 @@
         1,
         1,
         null,
+        null,
+        null,
+        1,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "/Users/student/Documents/Projects/Week-10/Gilded Rose Ruby/lib/normal_item.rb": [
+        1,
         null
       ],
       "/Users/student/Documents/Projects/Week-10/Gilded Rose Ruby/spec/item_spec.rb": [
@@ -391,9 +429,13 @@
         1,
         null,
         null,
+        null,
+        null,
+        1,
+        null,
         null
       ]
     },
-    "timestamp": 1574292741
+    "timestamp": 1574328319
   }
 }

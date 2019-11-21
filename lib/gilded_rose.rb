@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'item'
+require_relative 'item'
 
 class GildedRose
   SPECIAL_ITEMS = [

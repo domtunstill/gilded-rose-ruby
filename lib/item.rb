@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+require_relative 'normal_item'
 
 class Item
   attr_accessor :name, :sell_in, :quality
@@ -13,3 +14,7 @@ class Item
     "#{@name}, #{@sell_in}, #{@quality}"
   end
   end
+
+  class NormalItem < Item
+  end
+
