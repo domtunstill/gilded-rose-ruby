@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require_relative 'normal_item'
-
 # Item class is the default item class which hasn't been changed and has info about each item sell_in, quality and name
 class Item
   attr_accessor :name, :sell_in, :quality
@@ -19,7 +17,6 @@ end
 
 # MainItem class inherits from the Item class and has methods shared amongst it's children
 class MainItem < Item
-
   def update_sell_in
     @sell_in -= 1
   end
@@ -35,7 +32,6 @@ class MainItem < Item
   def out_of_date?
     @sell_in <= 0
   end
-
 end
 
 # LegendaryItem class inherits from the Item class not the MainItem class and updates quality values for normal items

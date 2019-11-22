@@ -31,5 +31,4 @@ class GildedRose
     @special_items.each_key { |key| return @special_items[key] if item.name.downcase.include?(key.downcase) }
     @normal_item
   end
-
 end
