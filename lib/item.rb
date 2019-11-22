@@ -19,6 +19,11 @@ end
 
 # MainItem class inherits from the Item class and has methods shared amongst it's children
 class MainItem < Item
+
+  def update_sell_in
+    @sell_in -= 1
+  end
+
   def max_quality?
     @quality == 50
   end
@@ -31,9 +36,6 @@ class MainItem < Item
     @sell_in <= 0
   end
 
-  def update_sell_in
-    @sell_in -= 1
-  end
 end
 
 # LegendaryItem class inherits from the Item class not the MainItem class and updates quality values for normal items
